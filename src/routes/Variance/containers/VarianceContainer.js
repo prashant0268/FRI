@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { increment, double } from '../modules/variance'
+import { sayHello } from '../modules/variance'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -8,18 +8,20 @@ import { increment, double } from '../modules/variance'
 
 import Variance from '../components/Variance'
 
+import type { VarianceObject } from '../interfaces/variance'
+
 /*  Object of action creators (can also be function that returns object).
     Keys will be passed as props to presentational components. Here we are
     implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-  increment : () => increment(1),
-    double: () => double()
+    sayHello: () => sayHello()
 }
 
-const mapStateToProps = (state) => ({
-  variance : state.variance
+const mapStateToProps = (state): { variance : ?VarianceObject } => ({
+    variance: state.variance
 })
+
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
 

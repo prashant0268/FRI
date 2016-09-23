@@ -1,15 +1,22 @@
 import React from 'react'
 
-export const Variance = (props) => (
+import type { VarianceObject } from '../interfaces/variance'
+
+
+export const Variance = (props : Props) => (
   <div style={{ margin: '0 auto' }} >
-    <h2>Variance</h2>
+    <h2 onClick={props.sayHello}>Variance</h2>
+    {props.variance.counter}
   </div>
 )
 
+type Props = {
+    variance : ?VarianceObject,
+    sayHello: Function
+}
+
 Variance.propTypes = {
-  variance     : React.PropTypes.number.isRequired,
-    double   : React.PropTypes.func.isRequired,
-  increment   : React.PropTypes.func.isRequired
+    sayHello :  React.PropTypes.func.isRequired
 }
 
 export default Variance

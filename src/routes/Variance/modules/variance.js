@@ -1,36 +1,29 @@
+import type { VarianceObject } from '../interfaces/variance.js'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const VARIANCE_INCREMENT = 'VARIANCE_INCREMENT'
-export const DOUBLE_VARIANCE = 'DOUBLE_VARIANCE'
+export const SAY_HELLO = 'SAY_HELLO'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function increment (value = 1) {
-  return {
-    type    : VARIANCE_INCREMENT,
-    payload : value
-  }
-}
 
-export function double () {
-  return {
-    type    : DOUBLE_VARIANCE
-  }
-}
-
-export const actions = {
-  increment, double
+export function sayHello(){
+    console.log("export function sayHello(){");
+    return {
+        type : SAY_HELLO
+    }
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [VARIANCE_INCREMENT] : (state, action) => state + action.payload,
-  [DOUBLE_VARIANCE] : (state, action) => state + state
-
+  [SAY_HELLO] : (state: VarianceObject) => {
+      var someCounter = state.counter + 2
+      return ({ ...state, counter: someCounter })
+  }
 }
 
 
@@ -38,8 +31,10 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
+
+const initialState: VarianceObject = {counter: 10, id:1234, value:"some value", consoleArray:[]}
 export default function varianceReducer (state = initialState, action) {
+    console.log("export default function varianceReducer (state = initialState, action) {");
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state
